@@ -31,6 +31,10 @@ dependencies:
   - bioconda::kalign2==2.04
   - bioconda::mmseqs2
   - pytorch::pytorch=1.12.*
+  # documentation
+  - sphinx
+  - sphinxcontrib-bibtex
+  - furo
   - pip:
       - deepspeed==0.12.4
       - dm-tree==0.1.6
