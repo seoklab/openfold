@@ -36,6 +36,7 @@ dependencies:
   - sphinx
   - sphinxcontrib-bibtex
   - furo
+  - myst-parser=3
   - pip:
       - deepspeed==0.12.4
       - dm-tree==0.1.6
