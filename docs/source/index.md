@@ -116,3 +116,9 @@ OpenFold_Parameters.md
 FAQ.md
 original_readme.md
 ```
+
+```{toctree}
+:hidden:
+:caption: Python API
+Python_API.rst
+```
