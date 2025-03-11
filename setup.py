@@ -47,8 +47,8 @@ def get_cuda_bare_metal_version(cuda_dir):
         release = output[release_idx].split(".")
         bare_metal_major = release[0]
         bare_metal_minor = release[1][0]
-        
-        return raw_output, bare_metal_major, bare_metal_minor
+
+        return raw_output, int(bare_metal_major), int(bare_metal_minor)
 
 compute_capabilities = set([
     (3, 7), # K80, e.g.
@@ -57,13 +57,21 @@ compute_capabilities = set([
 ])
 
 compute_capabilities.add((7, 0))
-_, bare_metal_major, _ = get_cuda_bare_metal_version(CUDA_HOME)
-if int(bare_metal_major) >= 11:
+_, bare_metal_major, bare_metal_minor = get_cuda_bare_metal_version(CUDA_HOME)
+if bare_metal_major >= 10:
+    compute_capabilities.add((7, 5))
+if bare_metal_major >= 11:
     compute_capabilities.add((8, 0))
+if (bare_metal_major, bare_metal_minor) >= (11, 1):
+    compute_capabilities.add((8, 6))
+if (bare_metal_major, bare_metal_minor) >= (11, 5):
+    compute_capabilities.add((8, 7))
+if (bare_metal_major, bare_metal_minor) >= (11, 8):
+    compute_capabilities.add((9, 0))
 
-compute_capability, _ = get_nvidia_cc()
-if compute_capability is not None:
-    compute_capabilities = set([compute_capability])
+# compute_capability, _ = get_nvidia_cc()
+# if compute_capability is not None:
+#     compute_capabilities = set([compute_capability])
 
 cc_flag = []
 for major, minor in list(compute_capabilities):
