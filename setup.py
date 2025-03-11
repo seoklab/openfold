@@ -51,13 +51,14 @@ def get_cuda_bare_metal_version(cuda_dir):
         return raw_output, int(bare_metal_major), int(bare_metal_minor)
 
 compute_capabilities = set([
-    (3, 7), # K80, e.g.
     (5, 2), # Titan X
     (6, 1), # GeForce 1000-series
 ])
 
 compute_capabilities.add((7, 0))
 _, bare_metal_major, bare_metal_minor = get_cuda_bare_metal_version(CUDA_HOME)
+if bare_metal_major < 12:
+    compute_capabilities.add((3,7))
 if bare_metal_major >= 10:
     compute_capabilities.add((7, 5))
 if bare_metal_major >= 11:
