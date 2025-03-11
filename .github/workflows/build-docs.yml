@@ -30,6 +30,8 @@ jobs:
           environment-file: environment.yml
           generate-run-shell: true
           cache-environment: true
+        env:
+          CONDA_OVERRIDE_CUDA: "11.8"
 
       - run: pip install .
         shell: micromamba-shell {0}
