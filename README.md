@@ -54,3 +54,13 @@ If you use OpenProteinSet, please also cite:
 }
 ```
 Any work that cites OpenFold should also cite [AlphaFold](https://www.nature.com/articles/s41586-021-03819-2) and [AlphaFold-Multimer](https://www.biorxiv.org/content/10.1101/2021.10.04.463034v1) if applicable.
+
+## Installation
+
+After environment file updates, now this repository should be installed with the
+following command, where `<cuda-version>` is the version of minimum CUDA
+driver installed in the system (usually can be found with `nvidia-smi`):
+
+```bash
+CONDA_OVERRIDE_CUDA=<cuda-version> mamba env create -f environment.yml
+```
