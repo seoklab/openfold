@@ -32,8 +32,8 @@ dependencies:
   - bioconda::mmseqs2
   - pytorch=2.1.*=*cuda12*
   - pytorch-cuda=12.1
-  - cuda-nvcc=12.1
-  - cuda-libraries-dev=12.1
+  - cuda-nvcc=12.2
+  - cuda-libraries-dev=12.2
   - dm-tree=0.1
   # documentation
   - sphinx
