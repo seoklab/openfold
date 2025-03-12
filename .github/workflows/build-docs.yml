@@ -35,6 +35,9 @@ jobs:
 
       - run: pip install .
         shell: micromamba-shell {0}
+        env:
+          CC: gcc-12
+          CXX: g++-12
 
       - run: cd docs && make html
         shell: micromamba-shell {0}
