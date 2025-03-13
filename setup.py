@@ -144,7 +144,6 @@ except FileExistsError:
 
 setup(
     name='openfold',
-    version='2.0.0',
     description='A PyTorch reimplementation of DeepMind\'s AlphaFold 2',
     author='OpenFold Team',
     author_email='jennifer.wei@omsf.io',
@@ -164,4 +163,6 @@ setup(
         'Programming Language :: Python :: 3.9,'
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
     ],
+    setup_requires=["setuptools_scm"],
+    use_scm_version=True,
 )
