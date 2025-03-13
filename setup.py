@@ -14,8 +14,11 @@
 # limitations under the License.
 import os
 from setuptools import setup, find_packages
+import shutil
 import subprocess
+from pathlib import Path
 
+import requests
 import torch
 from torch.utils.cpp_extension import BuildExtension, CppExtension, CUDAExtension, CUDA_HOME
 
@@ -116,6 +119,28 @@ else:
             'cxx': ['-O3'],
         }
     )]
+
+try:
+    with (
+        open(
+            Path(__file__).parent
+            / "openfold/resources/stereo_chemical_props.txt",
+            "xb",
+        ) as f,
+        requests.get(
+            (
+                "https://git.scicore.unibas.ch/schwede/openstructure/-"
+                "/raw/7102c63615b64735c4941278d92b554ec94415f8"
+                "/modules/mol/alg/src/stereo_chemical_props.txt"
+            ),
+            allow_redirects=True,
+            stream=True,
+        ) as r,
+    ):
+        r.raw.decode_content = True
+        shutil.copyfileobj(r.raw, f)
+except FileExistsError:
+    pass
 
 setup(
     name='openfold',
