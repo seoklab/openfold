@@ -24,6 +24,8 @@ jobs:
           large-packages: false
 
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: mamba-org/setup-micromamba@v1
         with:
